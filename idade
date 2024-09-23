@@ -1,0 +1,36 @@
+#include<stdio.h>
+
+typedef struct pessoa{
+      int idade;
+      struct pessoa*braco;
+}pessoa;
+
+int main(){
+
+pessoa*maria=(pessoa*) malloc (sizeof(pessoa));
+pessoa*julia=(pessoa*) malloc (sizeof(pessoa));
+pessoa*wanderson=(pessoa*) malloc (sizeof(pessoa));
+pessoa*luiz=(pessoa*) malloc (sizeof(pessoa));
+
+
+maria->idade=20;
+julia->idade=21;
+wanderson->idade=23;
+luiz->idade=24;
+
+maria->braco=julia;// maria aponta para julia
+julia->braco=wanderson; // julia apontar para wanderson
+//wanderson->braco=NULL;   NULL-> não aponta para mais ninguem.
+wanderson->braco=luiz;// wanderson apontar para luiz
+luiz->braco=maria->braco; // luiz apontar para maria (lulpe)
+//maria->braco=luiz;
+
+
+printf("\n\nIdade de maria eh: %d anos",maria->idade);
+printf("\n\nIdade de julia eh: %d anos",maria->braco->idade); //1-braco=julia(aparece a idade da julia)
+printf("\n\n Idade de Wanerson eh: %d anos\n",maria->braco->braco->idade);//1-braco=julia,2-braco=wanderson(idade de wanderson aparece)
+printf("\n\n Idade de Luiz eh: %d anos",maria->braco->braco->braco->idade);//1-braco=julia, 2-braco=wanderson, 3-braco=luiz(idade de luiz)
+
+
+
+}
